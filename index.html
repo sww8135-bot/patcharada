@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบคู่มือการใช้งานคอมพิวเตอร์ อบจ.</title>
+    
+    <!-- Favicon (ไอคอนเว็บ) สำหรับแสดงบนแท็บเบราว์เซอร์ -->
+    <link rel="icon" type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/building-columns.svg">
+    
+    <!-- ใช้ Bootstrap 5 สำหรับโครงสร้างเว็บให้ดูทันสมัยและรองรับมือถือ -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- ฟอนต์สารบรรณ (TH Sarabun New) สำหรับงานราชการ -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f4f7f6;
+            font-size: 18px;
+        }
+        /* แถบเมนูด้านบน โทนสีน้ำเงินราชการ */
+        .navbar-custom {
+            background-color: #003366; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .navbar-custom .navbar-brand {
+            color: #F4C430; /* สีทอง */
+            font-weight: bold;
+            font-size: 22px;
+        }
+        /* เมนูด้านข้าง */
+        .sidebar {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px 10px;
+            min-height: 80vh;
+        }
+        .nav-link {
+            color: #333;
+            font-weight: 500;
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            background-color: #e9ecef;
+            color: #003366;
+        }
+        .nav-link.active {
+            background-color: #003366;
+            color: #ffffff;
+        }
+        /* พื้นที่เนื้อหา */
+        .content-area {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 30px;
+            min-height: 80vh;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        h2, h3, h4 {
+            color: #003366;
+            font-weight: bold;
+        }
+        .alert-info-custom {
+            background-color: #e3f2fd;
+            border-left: 5px solid #003366;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom py-3">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-building-columns me-2" style="color: #F4C430;"></i> ระบบคู่มือปฏิบัติงานองค์การบริหารส่วนจังหวัด (อบจ.)
+            </a>
+            <span class="text-white ms-auto"><i class="fa-solid fa-user-shield me-1"></i> สำหรับบุคลากร อบจ.</span>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container-fluid mt-4 px-4 pb-5">
+        <div class="row">
+            
+            <!-- Sidebar Navigation -->
+            <div class="col-md-3 mb-4">
+                <div class="sidebar">
+                    <h5 class="text-center mb-4" style="color: #003366; font-weight: bold;"><i class="fa-solid fa-list-ul me-2"></i> สารบัญคู่มือ</h5>
+                    <ul class="nav flex-column" id="sidebarMenu">
+                        <li><a class="nav-link active" onclick="showSection('intro', this)"><i class="fa-solid fa-book-open me-2"></i> คำนำ & สารบัญ</a></li>
+                        <li><a class="nav-link" onclick="showSection('chap1', this)"><i class="fa-solid fa-desktop me-2"></i> บทที่ 1: รู้จักคอมพิวเตอร์เบื้องต้น</a></li>
+                        <li><a class="nav-link" onclick="showSection('chap2', this)"><i class="fa-brands fa-windows me-2"></i> บทที่ 2: การเปิด-ปิด และ Windows</a></li>
+                        <li><a class="nav-link" onclick="showSection('chap3', this)"><i class="fa-solid fa-file-word me-2"></i> บทที่ 3: โปรแกรมพื้นฐาน (Office)</a></li>
+                        <li><a class="nav-link" onclick="showSection('chap4', this)"><i class="fa-solid fa-globe me-2"></i> บทที่ 4: อินเทอร์เน็ตและอีเมลราชการ</a></li>
+                        <li><a class="nav-link" onclick="showSection('chap5', this)"><i class="fa-solid fa-folder-tree me-2"></i> บทที่ 5: การจัดเก็บและสำรองข้อมูล</a></li>
+                        <li><a class="nav-link" onclick="showSection('chap6', this)"><i class="fa-solid fa-shield-halved me-2"></i> บทที่ 6: ความปลอดภัยของข้อมูล</a></li>
+                        <li><a class="nav-link" onclick="showSection('appendix', this)"><i class="fa-solid fa-address-book me-2"></i> ภาคผนวก (ติดต่อฝ่าย IT)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="col-md-9">
+                <div class="content-area">
+                    
+                    <!-- คำนำ -->
+                    <div id="intro" class="content-section active">
+                        <h2>คู่มือการใช้งานคอมพิวเตอร์เบื้องต้น</h2>
+                        <hr>
+                        <p><strong>จัดทำโดย:</strong> นางสาว พัชรดา ศรีสอาด[cite: 1]</p>
+                        <h4>คำนำ</h4>
+                        <p>คู่มือฉบับนี้จัดทำขึ้นเพื่อเป็นแนวทางเบื้องต้นสำหรับบุคลากรขององค์การบริหารส่วนจังหวัด (อบจ.) ในการใช้งานเครื่องคอมพิวเตอร์และโปรแกรมพื้นฐานที่จำเป็นต่อการปฏิบัติงานประจำวัน[cite: 1] เช่น การเปิด-ปิดเครื่อง การใช้งานระบบปฏิบัติการ การพิมพ์เอกสาร การจัดเก็บและสำรองข้อมูล การใช้งานอินเทอร์เน็ตและไปรษณีย์อิเล็กทรอนิกส์ของราชการ ตลอดจนแนวทางการรักษาความปลอดภัยของข้อมูล[cite: 1]</p>
+                        <p>เนื้อหาในคู่มือนี้เขียนขึ้นให้เข้าใจง่าย เหมาะสำหรับผู้เริ่มต้นใช้งานคอมพิวเตอร์[cite: 1] หน่วยงานสามารถนำไปปรับปรุงแก้ไขเพิ่มเติมให้สอดคล้องกับระบบงาน โปรแกรม และนโยบายด้านเทคโนโลยีสารสนเทศของแต่ละหน่วยงานได้ตามความเหมาะสม[cite: 1]</p>
+                    </div>
+
+                    <!-- บทที่ 1 -->
+                    <div id="chap1" class="content-section">
+                        <h2>บทที่ 1: รู้จักคอมพิวเตอร์และอุปกรณ์เบื้องต้น</h2>
+                        <hr>
+                        <h4>1.1 ส่วนประกอบหลักของคอมพิวเตอร์</h4>
+                        <ul>
+                            <li><strong>จอภาพ (Monitor):</strong> แสดงผลข้อมูลและการทำงาน[cite: 1]</li>
+                            <li><strong>ตัวเครื่อง/ซีพียู (CPU/Computer Case):</strong> หน่วยประมวลผลกลาง[cite: 1]</li>
+                            <li><strong>แป้นพิมพ์ (Keyboard) และเมาส์ (Mouse):</strong> อุปกรณ์นำเข้าข้อมูล[cite: 1]</li>
+                            <li><strong>เครื่องพิมพ์ (Printer) และเครื่องสแกน (Scanner)</strong>[cite: 1]</li>
+                            <li><strong>อุปกรณ์จัดเก็บข้อมูลภายนอก:</strong> เช่น แฟลชไดรฟ์ (Flash Drive), ฮาร์ดดิสก์พกพา (External Hard Disk)[cite: 1]</li>
+                        </ul>
+                        <h4 class="mt-4">1.2 ข้อควรปฏิบัติในการดูแลอุปกรณ์</h4>
+                        <ul>
+                            <li>วางเครื่องคอมพิวเตอร์ในที่อากาศถ่ายเทสะดวก ไม่มีฝุ่นละอองมาก[cite: 1]</li>
+                            <li>ไม่วางแก้วน้ำหรือของเหลวใกล้อุปกรณ์คอมพิวเตอร์[cite: 1]</li>
+                            <li>ปิดเครื่องให้ถูกวิธีทุกครั้งก่อนกลับบ้านหรือเลิกใช้งาน[cite: 1]</li>
+                            <li>แจ้งเจ้าหน้าที่ IT ทันทีเมื่อพบความผิดปกติ เช่น เครื่องร้อนจัด มีเสียงดัง หรือจอภาพกระพริบ[cite: 1]</li>
+                        </ul>
+                        <div class="alert-info-custom mt-3">
+                            <strong><i class="fa-solid fa-lightbulb text-warning"></i> เกร็ดความรู้:</strong> ควรสำรองข้อมูลสำคัญอย่างน้อยสัปดาห์ละ 1 ครั้ง เพื่อป้องกันข้อมูลสูญหายจากเหตุขัดข้องของเครื่อง[cite: 1]
+                        </div>
+                    </div>
+
+                    <!-- บทที่ 2 -->
+                    <div id="chap2" class="content-section">
+                        <h2>บทที่ 2: การเปิด-ปิดเครื่องและการใช้งาน Windows เบื้องต้น</h2>
+                        <hr>
+                        <h4>2.1 ขั้นตอนการเปิดเครื่อง</h4>
+                        <ol>
+                            <li>ตรวจสอบสายไฟและสายสัญญาณต่าง ๆ ให้เรียบร้อย[cite: 1]</li>
+                            <li>กดปุ่ม Power ที่ตัวเครื่องคอมพิวเตอร์[cite: 1]</li>
+                            <li>กดปุ่ม Power ที่จอภาพ (หากไม่ติดอัตโนมัติ)[cite: 1]</li>
+                            <li>รอระบบปฏิบัติการ Windows โหลดจนแสดงหน้าจอเข้าสู่ระบบ (Log in)[cite: 1]</li>
+                            <li>กรอกชื่อผู้ใช้งานและรหัสผ่านของตนเองเพื่อเข้าใช้งาน[cite: 1]</li>
+                        </ol>
+                        <h4 class="mt-4">2.2 ขั้นตอนการปิดเครื่องอย่างถูกวิธี</h4>
+                        <ol>
+                            <li>ปิดโปรแกรมทั้งหมดที่เปิดใช้งานอยู่ และบันทึกงานให้เรียบร้อย[cite: 1]</li>
+                            <li>คลิกปุ่ม Start ที่มุมล่างซ้ายของหน้าจอ[cite: 1]</li>
+                            <li>เลือกคำสั่ง Shut down หรือ ปิดเครื่อง[cite: 1]</li>
+                            <li>รอจนเครื่องดับสนิทก่อนปิดสวิตช์ปลั๊กไฟ (ถ้ามี)[cite: 1]</li>
+                        </ol>
+                        <div class="alert alert-danger mt-3">
+                            <strong>ข้อควรระวัง:</strong> ห้ามปิดเครื่องด้วยการกดปุ่ม Power ค้างไว้ หรือถอดปลั๊กไฟทันที เพราะอาจทำให้ข้อมูลเสียหายหรือเครื่องชำรุดได้[cite: 1]
+                        </div>
+                    </div>
+
+                    <!-- บทที่ 3 -->
+                    <div id="chap3" class="content-section">
+                        <h2>บทที่ 3: การใช้งานโปรแกรมพื้นฐาน (Word / Excel / PowerPoint)</h2>
+                        <hr>
+                        <h4>3.1 Microsoft Word - งานเอกสารราชการ</h4>
+                        <ul>
+                            <li>ใช้สำหรับพิมพ์หนังสือราชการ บันทึกข้อความ รายงาน และเอกสารทั่วไป[cite: 1]</li>
+                            <li>ตั้งค่าหน้ากระดาษ (Page Layout) ให้ตรงตามระเบียบงานสารบรรณ[cite: 1]</li>
+                            <li>ใช้แบบฟอร์ม/เทมเพลตของหน่วยงานเพื่อความเป็นมาตรฐานเดียวกัน[cite: 1]</li>
+                            <li>บันทึกไฟล์ (Save) เป็นระยะด้วยปุ่ม Ctrl+S เพื่อป้องกันข้อมูลสูญหาย[cite: 1]</li>
+                        </ul>
+                        <h4 class="mt-4">3.2 Microsoft Excel - งานตัวเลขและข้อมูล</h4>
+                        <ul>
+                            <li>ใช้สำหรับจัดทำทะเบียนข้อมูล บัญชี งบประมาณ และการคำนวณต่าง ๆ[cite: 1]</li>
+                            <li>การใส่สูตรคำนวณเบื้องต้น เช่น =SUM(A1:A10) สำหรับรวมตัวเลข[cite: 1]</li>
+                        </ul>
+                        <div class="alert-info-custom mt-3">
+                            <strong><i class="fa-solid fa-keyboard"></i> คำแนะนำ:</strong> ควรฝึกใช้แป้นพิมพ์ลัด (Shortcut Keys) เช่น Ctrl+C (คัดลอก), Ctrl+V (วาง), Ctrl+Z (ยกเลิกคำสั่ง) เพื่อให้ทำงานได้รวดเร็วขึ้น[cite: 1]
+                        </div>
+                    </div>
+
+                    <!-- บทที่ 4 -->
+                    <div id="chap4" class="content-section">
+                        <h2>บทที่ 4: การใช้งานอินเทอร์เน็ตและอีเมลราชการ</h2>
+                        <hr>
+                        <h4>4.1 การใช้งานอินเทอร์เน็ตอย่างเหมาะสม</h4>
+                        <ul>
+                            <li>ใช้อินเทอร์เน็ตเพื่อการปฏิบัติงานเป็นหลัก เช่น สืบค้นข้อมูล ติดต่อราชการ[cite: 1]</li>
+                            <li>หลีกเลี่ยงการเข้าเว็บไซต์ที่ไม่น่าเชื่อถือหรือมีความเสี่ยงด้านความปลอดภัย[cite: 1]</li>
+                            <li>ไม่ดาวน์โหลดโปรแกรมหรือไฟล์จากแหล่งที่ไม่ทราบที่มา[cite: 1]</li>
+                        </ul>
+                        <h4 class="mt-4">4.2 การใช้งานอีเมลราชการ (e-Mail)</h4>
+                        <ul>
+                            <li>เข้าสู่ระบบด้วยชื่อผู้ใช้และรหัสผ่านอีเมลราชการที่หน่วยงานกำหนด[cite: 1]</li>
+                            <li>เขียนอีเมลโดยระบุหัวเรื่อง (Subject) ให้ชัดเจน และใช้ภาษาสุภาพเหมาะสมกับงานราชการ[cite: 1]</li>
+                            <li>ออกจากระบบ (Log out) ทุกครั้งหลังใช้งานเสร็จ โดยเฉพาะเมื่อใช้เครื่องคอมพิวเตอร์ร่วมกับผู้อื่น[cite: 1]</li>
+                        </ul>
+                        <div class="alert alert-danger mt-3">
+                            <strong>ข้อควรระวัง:</strong> ไม่เปิดไฟล์แนบหรือคลิกลิงก์จากอีเมลที่ไม่รู้จักหรือดูน่าสงสัย เพราะอาจเป็นอีเมลหลอกลวง (Phishing) ที่นำไปสู่การถูกโจรกรรมข้อมูล[cite: 1]
+                        </div>
+                    </div>
+
+                    <!-- บทที่ 5 -->
+                    <div id="chap5" class="content-section">
+                        <h2>บทที่ 5: การจัดเก็บเอกสารและการสำรองข้อมูล</h2>
+                        <hr>
+                        <h4>5.1 การจัดเก็บไฟล์อย่างเป็นระบบ</h4>
+                        <ul>
+                            <li>ตั้งชื่อไฟล์และโฟลเดอร์ให้สื่อความหมาย เช่น ระบุปี เดือน และประเภทงาน[cite: 1]</li>
+                            <li>จัดหมวดหมู่โฟลเดอร์ตามลักษณะงาน เช่น งานสารบรรณ งานบุคคล งานงบประมาณ[cite: 1]</li>
+                            <li>ลบไฟล์ที่ไม่ใช้งานแล้วออกอย่างสม่ำเสมอเพื่อประหยัดพื้นที่จัดเก็บ[cite: 1]</li>
+                        </ul>
+                        <h4 class="mt-4">5.2 การสำรองข้อมูล (Backup)</h4>
+                        <ul>
+                            <li>สำรองข้อมูลสำคัญไปยังอุปกรณ์ภายนอก เช่น External Hard Disk หรือ Flash Drive[cite: 1]</li>
+                            <li>กำหนดรอบเวลาสำรองข้อมูลที่ชัดเจน เช่น ทุกวันศุกร์ หรือทุกสิ้นเดือน[cite: 1]</li>
+                        </ul>
+                    </div>
+
+                    <!-- บทที่ 6 -->
+                    <div id="chap6" class="content-section">
+                        <h2>บทที่ 6: ความปลอดภัยของข้อมูลและการใช้งานคอมพิวเตอร์อย่างปลอดภัย</h2>
+                        <hr>
+                        <h4>6.1 การตั้งรหัสผ่านที่ปลอดภัย</h4>
+                        <ul>
+                            <li>ใช้รหัสผ่านที่มีความยาวอย่างน้อย 8 ตัวอักษร ผสมตัวเลขและอักขระพิเศษ[cite: 1]</li>
+                            <li>ไม่ใช้รหัสผ่านที่คาดเดาง่าย เช่น วันเกิด หรือเบอร์โทรศัพท์[cite: 1]</li>
+                            <li>ไม่บอกรหัสผ่านให้ผู้อื่นทราบ และเปลี่ยนรหัสผ่านเป็นระยะ[cite: 1]</li>
+                        </ul>
+                        <h4 class="mt-4">6.3 แนวปฏิบัติด้านความปลอดภัยไซเบอร์เบื้องต้น</h4>
+                        <ul>
+                            <li>ล็อกหน้าจอเครื่องคอมพิวเตอร์ทุกครั้งเมื่อลุกออกจากโต๊ะทำงาน (กด Windows+L)[cite: 1]</li>
+                            <li>ไม่ติดตั้งโปรแกรมที่ไม่เกี่ยวข้องกับงานราชการโดยไม่ได้รับอนุญาต[cite: 1]</li>
+                            <li>แจ้งเจ้าหน้าที่ IT ทันทีเมื่อสงสัยว่าข้อมูลรั่วไหลหรือเครื่องติดไวรัส[cite: 1]</li>
+                        </ul>
+                        <div class="alert alert-warning mt-3">
+                            <strong>สำคัญ:</strong> ข้อมูลราชการถือเป็นทรัพย์สินของหน่วยงาน บุคลากรทุกคนมีหน้าที่ร่วมกันดูแลรักษาความปลอดภัยของข้อมูลอย่างเคร่งครัด[cite: 1]
+                        </div>
+                    </div>
+
+                    <!-- ภาคผนวก -->
+                    <div id="appendix" class="content-section">
+                        <h2>ภาคผนวก</h2>
+                        <hr>
+                        <h4>คำศัพท์เบื้องต้นที่ควรรู้</h4>
+                        <ul>
+                            <li><strong>Hardware</strong> - อุปกรณ์ที่จับต้องได้ของคอมพิวเตอร์[cite: 1]</li>
+                            <li><strong>Software</strong> - โปรแกรมหรือชุดคำสั่งที่ใช้งานบนคอมพิวเตอร์[cite: 1]</li>
+                            <li><strong>Phishing</strong> - กลลวงทางอีเมลหรือเว็บไซต์เพื่อขโมยข้อมูล[cite: 1]</li>
+                        </ul>
+                        <h4 class="mt-4 text-primary"><i class="fa-solid fa-headset"></i> ช่องทางติดต่อฝ่ายเทคโนโลยีสารสนเทศ (IT)</h4>
+                        <div class="card p-3 bg-light mt-2">
+                            <p class="mb-1"><strong>เวลาให้บริการ:</strong> วันจันทร์-ศุกร์ เวลา 08.30-16.30 น.[cite: 1]</p>
+                            <p class="mb-1"><strong>โทรศัพท์ภายใน:</strong> (โปรดระบุ)</p>
+                            <p class="mb-1"><strong>อีเมล:</strong> (โปรดระบุ)</p>
+                            <p class="mb-0"><strong>ห้องปฏิบัติงาน:</strong> (โปรดระบุ)</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript สำหรับสลับหน้าเนื้อหา -->
+    <script>
+        function showSection(sectionId, element) {
+            // ซ่อนเนื้อหาทั้งหมด
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            // แสดงเนื้อหาที่เลือก
+            document.getElementById(sectionId).classList.add('active');
+            
+            // เปลี่ยนสีเมนูที่ถูกเลือก
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
